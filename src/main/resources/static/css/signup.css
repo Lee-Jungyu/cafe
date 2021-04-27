@@ -1,0 +1,34 @@
+.div-signup {
+    width: 250px;
+    margin: 100px auto;
+    background-color: #ff0;
+    border: 5px solid #000;
+    padding: 10px;
+}
+.table-login {
+    width: 98%;
+    border-spacing: 0 10px;
+}
+.btn-signup {
+    display: block;
+    width: 95%;
+    background-color: #4f3;
+    border:1px solid #000;
+    padding: 9px 0;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+.btn-home {
+    display: block;
+    width: 95%;
+    background-color: #7af;
+    border:1px solid #000;
+    padding: 9px 0;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    float: right;
+}

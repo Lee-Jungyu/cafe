@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/js/index.js"></script>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <div class="container">
+        <th:block th:insert="fragment/header :: headerFragment"></th:block>
+        <div class="middle">
+            <div class="middle-left fl">
+                <div class="left-menu">
+                    <!-- 나중에 메뉴 동적 생성-->
+                    <a href="#">a</a>
+                    <a href="#">a</a>
+                    <a href="#">a</a>
+                </div>
+            </div>
+            <div class="middle-right fr">
+                <div class="content fl">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th style="width: 10%">번호</th>
+                            <th style="width: 60%">제목</th>
+                            <th style="width: 10%">작성자</th>
+                            <th style="width: 20%">날짜</th>
+                        </tr>
+                        </thead>
+                        <!-- 나중에 동적으로 생성 -->
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><a href="#">aaaaa</a></td>
+                            <td><a href="#">김김김</a></td>
+                            <td>0000.00.00</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td><a href="#">aaaaa</a></td>
+                            <td><a href="#">김김김</a></td>
+                            <td>0000.00.00</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td><a href="#">aaaaa</a></td>
+                            <td><a href="#">김김김</a></td>
+                            <td>0000.00.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${email == null}">
+                    <div class="div-login-section fl">
+                        <form class="form-login" method="POST">
+                            <table class="table-login">
+                                <tr>
+                                    <td style="color: white">Email</td>
+                                    <td> <input style="width: 95%" class="login-email" type="text" name="email"> </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: white">PW</td>
+                                    <td><input style="width: 95%" class="login-password" type="password" name="password"> </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="#" class="btn-login" onclick="login()">로그인</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <a href="/signup" class="btn-signup">회원가입</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <div th:if="${email != null}">
+                    <div class="div-user-info-section fl">
+                        <table>
+                            <tr>
+                                <td>환영합니다 <a class="link-profile" style="color: white"> <strong class="profile-email" th:text="${email}"></strong> </a> 님</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#" class="btn-logout" onclick="logout()">로그아웃</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <th:block th:insert="fragment/footer :: footerFragment"></th:block>
+    </div>
+
+    <script>
+        function setLink() {
+            var links = document.getElementsByClassName("link-profile");
+
+            for(var i = 0; i < links.length; i++) {
+                var link = links.item(i);
+                var email = link.children[0].innerText;
+                link.href = '/profile?email=' + email;
+            }
+        }
+
+        setLink();
+    </script>
+</body>
+</html>

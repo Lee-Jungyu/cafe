@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/js/signup.js"></script>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <div class="container">
+        <th:block th:insert="fragment/header :: headerFragment"></th:block>
+        email: <span th:text="${email}"></span>
+        <br>
+        role: <span th:text="${role}"></span>
+        <th:block th:insert="fragment/footer :: footerFragment"></th:block>
+    </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+table {
+    border-collapse: collapse;
+    width: 100%
+}
+th {
+    padding: 10px;
+    border-top: 3px double rgba(0,0,0,0.2);
+    border-bottom: 3px double rgba(0,0,0,0.2);
+}
+td {
+    padding: 5px;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.header {
+    background-color: #0f0;
+    height: 200px;
+    margin-bottom: 30px;
+}
+.container {
+    position: relative;
+    width: 1400px;
+    margin: 0 auto;
+}
+.middle {
+    width: 100%;
+}
+.middle::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.middle-left {
+    width: 20%;
+}
+.middle-right {
+    width: 80%;
+}
+.left-menu {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #0ee;
+    overflow-x: hidden;
+}
+.left-menu a {
+    padding: 8px 8px 8px 8px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block
+}
+.content {
+    width: 78%;
+    height: 100%;
+    margin: 0 10px;
+}
+.content table {
+    width: 100%;
+}
+.div-login-section {
+    height: 400px;
+    width: 20%;
+    background-color: #00f;
+}
+.table-login td {
+    padding: 9px 5px;
+}
+.btn-login {
+    display: block;
+    width: 100%;
+    background-color: #78f;
+    color: white;
+    border: none;
+    padding: 9px 0;
+    text-align: center;
+    text-decoration: none;
+}
+.btn-logout {
+    display: block;
+    width: 100%;
+    background-color: #78f;
+    color: white;
+    border: none;
+    padding: 9px 0;
+    text-align: center;
+    text-decoration: none;
+}
+.btn-signup {
+    display: block;
+    width: 100%;
+    background-color: #78f;
+    color: white;
+    border: none;
+    padding: 9px 0;
+    text-align: center;
+    text-decoration: none;
+}
+.div-user-info-section {
+    height: 400px;
+    width: 20%;
+    background-color: #00f;
+    color: white;
+}
+.footer {
+    position: relative;
+    bottom:0;
+    left:0;
+    margin-top: 30px;
+    background-color: #f0f;
+    height: 200px;
+}
+.link-profile {
+    text-decoration: none;
+}

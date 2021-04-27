@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>sign up</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/js/signup.js"></script>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/css/signup.css" type="text/css">
+    <div class="container">
+        <th:block th:insert="fragment/header :: headerFragment"></th:block>
+        <div class="div-signup">
+            <h1>Sign up</h1>
+            <form class="form-signup" method="POST">
+                <table class="table-login">
+                    <colgroup>
+                        <col width="30%" />
+                        <col width="20%" />
+                        <col width="30%" />
+                        <col width="20%" />
+                    </colgroup>
+                    <tr>
+                        <td colspan="1">Email</td>
+                        <td colspan="3"> <input class="signup-email" style="width: 95%" type="text" name="email"> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1">Password</td>
+                        <td colspan="3"><input class="signup-password" style="width: 95%" type="password" name="password"> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input class="signup-roles" type="radio" name="roles" value="ROLE_ADMIN,ROLE_USER"> admin
+                        </td>
+                        <td colspan="2">
+                            <input class="signup-roles" type="radio" name="roles" value="ROLE_USER" checked="checked"> user
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a href="#" class="btn-signup" onclick="signup()">회원가입</a>
+                        </td>
+                        <td colspan="2">
+                            <a href="/" class="btn-home">홈으로</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <th:block th:insert="fragment/footer :: footerFragment"></th:block>
+    </div>
+</body>
+</html>
