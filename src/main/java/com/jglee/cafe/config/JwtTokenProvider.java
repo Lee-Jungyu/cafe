@@ -27,7 +27,6 @@ import java.util.List;
 public class JwtTokenProvider {
     private String secretKey = "secretKey";
     private long tokenValidTime = 30 * 60 * 1000L;
-    //private final UserDetailsService userDetailsService;
     private final UserService userService;
 
     // 객체 초기화 secretKey를 Base64로 인코딩

@@ -1,18 +1,10 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>admin</title>
 </head>
 <body>
     <h2>관리자 전용 페이지</h2>
-    ID : <span sec:authentication="name"></span> <br>
-    소유권한 : <span sec:authentication="authorities"></span> <br>
-
-    <form id="logout" action="/logout" method="POST">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        <button type="submit">로그아웃</button>
-    </form>
 </body>
 </html>

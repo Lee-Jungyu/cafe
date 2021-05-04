@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="modal-content modal-remove-category" th:fragment="removeCategoryModal">
+    <form autocomplete="off">
+        <div class="modal-content-title">
+            <h2>카테고리 삭제</h2>
+        </div>
+        <div class="modal-content-body">
+            <label>삭제 할 카테고리를 선택하시오</label>
+            <select name="category" class="select-category-name"></select>
+        </div>
+        <div class="modal-content-btn">
+            <a href="#" class="a-btn-small btn-remove fl" onclick="removeCategory()">삭제</a>
+            <a href="#" class="a-btn-small btn-cancel fl" onclick="btnCancel()">취소</a>
+        </div>
+    </form>
+</div>
+</html>

@@ -13,15 +13,11 @@
         <th:block th:insert="fragment/header :: headerFragment"></th:block>
         <div class="middle">
             <div class="middle-left fl">
-                <div class="left-menu">
-                    <!-- 나중에 메뉴 동적 생성-->
-                    <a href="#">a</a>
-                    <a href="#">a</a>
-                    <a href="#">a</a>
-                </div>
+                <th:block th:insert="component/category :: categoryComponent"></th:block>
             </div>
             <div class="middle-right fr">
                 <div class="content fl">
+                    <h2 class="category-title" th:text="${category}"></h2>
                     <table>
                         <thead>
                         <tr>
@@ -55,44 +51,10 @@
                     </table>
                 </div>
                 <div th:if="${email == null}">
-                    <div class="div-login-section fl">
-                        <form class="form-login" method="POST">
-                            <table class="table-login">
-                                <tr>
-                                    <td style="color: white">Email</td>
-                                    <td> <input style="width: 95%" class="login-email" type="text" name="email"> </td>
-                                </tr>
-                                <tr>
-                                    <td style="color: white">PW</td>
-                                    <td><input style="width: 95%" class="login-password" type="password" name="password"> </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <a href="#" class="btn-login" onclick="login()">로그인</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <a href="/signup" class="btn-signup">회원가입</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
-                    </div>
+                    <th:block th:insert="component/login-section :: loginSectionComponent"></th:block>
                 </div>
                 <div th:if="${email != null}">
-                    <div class="div-user-info-section fl">
-                        <table>
-                            <tr>
-                                <td>환영합니다 <a class="link-profile" style="color: white"> <strong class="profile-email" th:text="${email}"></strong> </a> 님</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="#" class="btn-logout" onclick="logout()">로그아웃</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                    <th:block th:insert="component/user-info-section :: userInfoSectionComponent"></th:block>
                 </div>
             </div>
         </div>

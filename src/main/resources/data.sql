@@ -1,0 +1,1 @@
+INSERT INTO category (name) VALUES ('자유게시판');

@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="modal-background" th:fragment="categoryModalFragment">
+    <link rel="stylesheet" href="/css/modal.css" type="text/css">
+    <script src="/js/category-modal.js"></script>
+
+    <th:block th:insert="modal/add-category-modal :: addCategoryModal"></th:block>
+    <th:block th:insert="modal/edit-category-modal :: editCategoryModal"></th:block>
+    <th:block th:insert="modal/remove-category-modal :: removeCategoryModal"></th:block>
+</div>
+</html>

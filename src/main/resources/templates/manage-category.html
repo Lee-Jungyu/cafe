@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>manage category</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/css/manage-category.css" type="text/css">
+    <script src="/js/manage-category.js"></script>
+    <div class="container">
+        <th:block th:insert="fragment/header :: headerFragment"></th:block>
+        <div class="div-mng-category">
+            <h2>카테고리 관리</h2>
+            <table class="table-mng-category">
+                <tr>
+                    <td><a href="#" class="btn-mng-category" onclick="showModal('create')">카테고리 생성</a></td>
+                    <td><a href="#" class="btn-mng-category" onclick="showModal('update')">카테고리 수정</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#" class="btn-mng-category" onclick="showModal('delete')">카테고리 삭제</a></td>
+                    <td><a href="#" class="btn-mng-category" onclick="showModal('inquiry')">카테고리 조회</a></td>
+                </tr>
+            </table>
+        </div>
+        <th:block th:insert="fragment/footer :: footerFragment"></th:block>
+    </div>
+    <!--모달-->
+    <th:block th:replace="fragment/category-modal :: categoryModalFragment"></th:block>
+</body>
+</html>

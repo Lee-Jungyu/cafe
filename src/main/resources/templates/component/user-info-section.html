@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="user-info-section fl" th:fragment="userInfoSectionComponent">
+    <link rel="stylesheet" href="/css/user-info-section.css" type="text/css">
+    <script src="/js/login.js"></script>
+    <table>
+        <tr>
+            <td>환영합니다 <a class="link-profile" style="color: white"> <strong class="profile-email" th:text="${email}"></strong> </a> 님</td>
+        </tr>
+        <tr>
+            <td>
+                <a href="#" class="btn-logout" onclick="logout()">로그아웃</a>
+            </td>
+        </tr>
+        <div th:if="${role == 'ROLE_ADMIN'}">
+            <tr>
+                <td>
+                    <a href="/manage-category" class="btn-mng-category">카테고리 관리</a>
+                </td>
+            </tr>
+        </div>
+    </table>
+</div>
+</html>

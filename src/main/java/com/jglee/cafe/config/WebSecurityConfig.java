@@ -4,6 +4,7 @@ import com.jglee.cafe.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -45,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 토큰 기반 인증이므로로 세션 역시 사용하지 않음
                 .and()
                     .authorizeRequests() // 요청에 대한 사용권한 체크
-                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    .antMatchers("/admin/**", "/category/**", "/manage-category").hasRole("ADMIN")
                     //.antMatchers("/user/**").hasRole("USER")
                     .anyRequest().permitAll() // 그 외 나머지 요청은 누구나 접근 가능
                 .and()
@@ -56,7 +57,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
+        web.ignoring()
+                .antMatchers("/css/**", "/js/**", "/img/**")
+                .antMatchers(HttpMethod.GET, "/category/**");
     }
 
     @Override

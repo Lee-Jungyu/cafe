@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="modal-content modal-edit-category" th:fragment="editCategoryModal">
+    <form autocomplete="off">
+        <div class="modal-content-title">
+            <h2>카테고리 수정</h2>
+        </div>
+        <div class="modal-content-body">
+            <label>변경 할 카테고리를 선택하시오</label>
+            <select name="category" class="select-category-name"></select>
+            <label>변경 할 이름</label>
+            <input type="text" class="input-category-name" placeholder="카테고리명을 입력하시오">
+        </div>
+        <div class="modal-content-btn">
+            <a href="#" class="a-btn-small btn-edit fl" onclick="editCategory()">수정</a>
+            <a href="#" class="a-btn-small btn-cancel fl" onclick="btnCancel()">취소</a>
+        </div>
+    </form>
+</div>
+</html>

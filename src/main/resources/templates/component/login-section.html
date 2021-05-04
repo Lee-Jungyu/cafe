@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="login-section fl" th:fragment="loginSectionComponent">
+    <link rel="stylesheet" href="/css/login-section.css" type="text/css">
+    <script src="/js/login.js"></script>
+    <form class="form-login" method="POST">
+        <table class="table-login">
+            <tr>
+                <td style="color: white">Email</td>
+                <td> <input style="width: 95%" class="login-email" type="text" name="email"> </td>
+            </tr>
+            <tr>
+                <td style="color: white">PW</td>
+                <td><input style="width: 95%" class="login-password" type="password" name="password"> </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="#" class="btn-login" onclick="login()">로그인</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="/signup" class="btn-signup">회원가입</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</html>

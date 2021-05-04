@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="modal-content modal-add-category" th:fragment="addCategoryModal">
+    <form autocomplete="off">
+        <div class="modal-content-title">
+            <h2>카테고리 생성</h2>
+        </div>
+        <div class="modal-content-body">
+            <label>카테고리 이름</label>
+            <input type="text" class="input-category-name" placeholder="카테고리명을 입력하시오">
+        </div>
+        <div class="modal-content-btn">
+            <a href="#" class="a-btn-small btn-create fl" onclick="addCategory()">확인</a>
+            <a href="#" class="a-btn-small btn-cancel fl" onclick="btnCancel()">취소</a>
+        </div>
+    </form>
+</div>
+</html>

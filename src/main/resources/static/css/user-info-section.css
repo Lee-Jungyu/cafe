@@ -1,0 +1,26 @@
+.user-info-section {
+    height: 400px;
+    width: 20%;
+    background-color: #00f;
+    color: white;
+}
+.btn-logout {
+    display: block;
+    width: 100%;
+    background-color: #78f;
+    color: white;
+    border: none;
+    padding: 9px 0;
+    text-align: center;
+    text-decoration: none;
+}
+.btn-mng-category {
+    display: block;
+    width: 100%;
+    background-color: #78f;
+    color: white;
+    border: none;
+    padding: 9px 0;
+    text-align: center;
+    text-decoration: none;
+}

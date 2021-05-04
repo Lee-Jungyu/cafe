@@ -3,6 +3,7 @@ package com.jglee.cafe.controller;
 import com.jglee.cafe.config.JwtTokenProvider;
 import com.jglee.cafe.domain.User;
 import com.jglee.cafe.domain.UserRepository;
+import com.jglee.cafe.dto.UserDto;
 import com.jglee.cafe.dto.UserLoginDto;
 import com.jglee.cafe.dto.UserSignupDto;
 import com.jglee.cafe.service.UserService;
@@ -11,12 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -102,6 +102,20 @@ public class UserController {
 
         // 로그아웃
         return new ResponseEntity("success", HttpStatus.OK);
+    }
+
+    // 유저 정보
+    @GetMapping(value = "/user/{id}")
+    @ResponseBody
+    public UserDto findById(@PathVariable Long id) {
+        return userService.findById(id);
+    }
+
+    // 모든 유저 정보
+    @GetMapping(value = "/user")
+    @ResponseBody
+    public List<UserDto> findAll() {
+        return userService.findAll();
     }
 
 }
