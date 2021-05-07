@@ -28,9 +28,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException(email));
     }
 
-    public User loadUserByEmail(String email) throws UsernameNotFoundException {
-        // 시큐리티에서 지정한 서비스이기 때문에 이 메소드를 필수로 구현
-
+    public User loadUserByEmail(String email){
         return userRepository.findByEmail(email).orElse(null);
     }
 
