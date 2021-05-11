@@ -69,3 +69,20 @@ td {
     margin: 5px;
     border-radius: 5px;
 }
+
+.btn-create {
+    background-color: #34f;
+    color: white;
+}
+.btn-edit {
+    background-color: #fb0;
+    color: white;
+}
+.btn-remove {
+    background-color: #e43;
+    color: white;
+}
+.btn-cancel {
+    background-color: #777;
+    color: white;
+}

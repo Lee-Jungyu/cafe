@@ -16,14 +16,16 @@ public class PostDto {
     private String title;
     private String author;
     private String content;
+    private Long categoryId;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
     public PostDto (Post post) {
         this.id = post.getId();
         this.title = post.getTitle();
-        this.author = post.getAuthor();
+        this.author = post.getAuthor().getEmail();
         this.content = post.getContent();
+        this.categoryId = post.getCategory().getId();
         this.createdDate = post.getCreatedDate();
         this.modifiedDate = post.getModifiedDate();
     }

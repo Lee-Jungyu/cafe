@@ -6,28 +6,26 @@ import com.jglee.cafe.domain.CategoryRepository;
 import com.jglee.cafe.domain.User;
 import com.jglee.cafe.domain.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
 
-    private HttpSession httpSession;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
 
     @GetMapping("/")
-    public String index(Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String index(Model model, HttpServletRequest request) {
 
         // 현재 선택된 게시글 카테고리가 무엇인지 확인
         if(request.getParameter("category") != null) {
@@ -84,5 +82,22 @@ public class IndexController {
     @GetMapping("/manage-category")
     public String manageCategory(Model model) {
         return "manage-category";
+    }
+
+    @GetMapping("/new-post")
+    public String newPost(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("1 : " + authentication.getPrincipal());
+        if(authentication.getPrincipal().toString().equals("anonymousUser")) {
+            model.addAttribute("email", "null");
+        }
+        else {
+            UserDetails user = (UserDetails) authentication.getPrincipal();
+
+            String email = user.getUsername();
+            model.addAttribute("email", email);
+        }
+        return "new-post";
     }
 }

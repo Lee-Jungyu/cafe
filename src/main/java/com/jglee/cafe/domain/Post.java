@@ -25,17 +25,23 @@ public class Post extends BaseTimeEntity{
     @Column(length = 100, nullable = false)
     private String title;
 
-    @Column(length = 100, nullable = false)
-    private String author;
-
     @Column
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "author_email")
+    private User author;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     @Builder
-    public Post(String title, String author, String content) {
+    public Post(String title, String content, User author, Category category) {
         this.title = title;
         this.author = author;
         this.content = content;
+        this.category = category;
     }
 
     public void update(PostDto dto) {

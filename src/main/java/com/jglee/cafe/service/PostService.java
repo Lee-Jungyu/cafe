@@ -1,7 +1,9 @@
 package com.jglee.cafe.service;
 
+import com.jglee.cafe.domain.CategoryRepository;
 import com.jglee.cafe.domain.Post;
 import com.jglee.cafe.domain.PostRepository;
+import com.jglee.cafe.domain.UserRepository;
 import com.jglee.cafe.dto.PostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,14 +17,19 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final CategoryRepository categoryRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public Long save(PostDto dto) {
 
         return postRepository.save(Post.builder()
                 .title(dto.getTitle())
-                .author(dto.getAuthor())
                 .content(dto.getContent())
+                .author(userRepository.findByEmail(dto.getAuthor())
+                        .orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다.")))
+                .category(categoryRepository.findById(dto.getCategoryId())
+                        .orElseThrow(() -> new IllegalArgumentException("해당 카테고리가 없습니다.")))
                 .build()).getId();
     }
 
@@ -37,6 +44,22 @@ public class PostService {
     @Transactional
     public List<PostDto> findAllByAuthor(String author) {
         return postRepository.findAllByAuthor(author)
+                .stream()
+                .map(PostDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<PostDto> findAllByAuthor_Email(String email) {
+        return postRepository.findAllByAuthor_Email(email)
+                .stream()
+                .map(PostDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public List<PostDto> findAllByCategory_Id(Long id) {
+        return postRepository.findAllByCategory_Id(id)
                 .stream()
                 .map(PostDto::new)
                 .collect(Collectors.toList());

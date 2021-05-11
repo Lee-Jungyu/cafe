@@ -1,0 +1,17 @@
+.div-new-post {
+    margin: 0 auto;
+    width: fit-content;
+    border: 1px solid #eee;
+    padding: 20px;
+}
+.div-new-post::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.select-category-name {
+    display: block;
+    margin-top: 20px;
+    font-size: 15px;
+    width: 300px;
+}
