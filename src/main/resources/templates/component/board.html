@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="board fl" th:fragment="boardComponent">
+    <h2 class="category-title fl" th:text="${category}"></h2>
+    <a href="new-post" class="a-btn-small btn-create fr">글쓰기</a>
+    <table class="table-post">
+        <thead>
+        <tr>
+            <th style="width: 10%">번호</th>
+            <th style="width: 60%">제목</th>
+            <th style="width: 10%">작성자</th>
+            <th style="width: 20%">날짜</th>
+        </tr>
+        </thead>
+        <!-- 나중에 동적으로 생성 -->
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="/js/board.js"></script>
+</div>
+</html>

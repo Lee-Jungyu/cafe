@@ -5,11 +5,11 @@
     <script src="/js/login.js"></script>
     <table>
         <tr>
-            <td>환영합니다 <a class="link-profile" style="color: white"> <strong class="profile-email" th:text="${email}"></strong> </a> 님</td>
+            <td>환영합니다 <a class="link-profile" style="color: white" th:text="${email}"></a> 님</td>
         </tr>
         <tr>
             <td>
-                <a href="#" class="btn-logout" onclick="logout()">로그아웃</a>
+                <a href="" class="btn-logout" onclick="logout()">로그아웃</a>
             </td>
         </tr>
         <div th:if="${role == 'ROLE_ADMIN'}">

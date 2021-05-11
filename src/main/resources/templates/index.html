@@ -7,7 +7,6 @@
 </head>
 <body>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="/js/index.js"></script>
     <link rel="stylesheet" href="/css/index.css" type="text/css">
     <div class="container">
         <th:block th:insert="fragment/header :: headerFragment"></th:block>
@@ -16,41 +15,7 @@
                 <th:block th:insert="component/category :: categoryComponent"></th:block>
             </div>
             <div class="middle-right fr">
-                <div class="content fl">
-                    <h2 class="category-title fl" th:text="${category}"></h2>
-                    <a href="new-post" class="a-btn-small btn-create fr">글쓰기</a>
-                    <table>
-                        <thead>
-                        <tr>
-                            <th style="width: 10%">번호</th>
-                            <th style="width: 60%">제목</th>
-                            <th style="width: 10%">작성자</th>
-                            <th style="width: 20%">날짜</th>
-                        </tr>
-                        </thead>
-                        <!-- 나중에 동적으로 생성 -->
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><a href="#">aaaaa</a></td>
-                            <td><a href="#">김김김</a></td>
-                            <td>0000.00.00</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td><a href="#">aaaaa</a></td>
-                            <td><a href="#">김김김</a></td>
-                            <td>0000.00.00</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td><a href="#">aaaaa</a></td>
-                            <td><a href="#">김김김</a></td>
-                            <td>0000.00.00</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <th:block th:insert="component/board :: boardComponent"></th:block>
                 <div th:if="${email == null}">
                     <th:block th:insert="component/login-section :: loginSectionComponent"></th:block>
                 </div>
@@ -62,18 +27,6 @@
         <th:block th:insert="fragment/footer :: footerFragment"></th:block>
     </div>
 
-    <script>
-        function setLink() {
-            var links = document.getElementsByClassName("link-profile");
-
-            for(var i = 0; i < links.length; i++) {
-                var link = links.item(i);
-                var email = link.children[0].innerText;
-                link.href = '/profile?email=' + email;
-            }
-        }
-
-        setLink();
-    </script>
+    <script src="/js/index.js"></script>
 </body>
 </html>

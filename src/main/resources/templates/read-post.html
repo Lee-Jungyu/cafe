@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>new post</title>
+    <style>
+        .div-read-post {
+            margin: 0 auto;
+            width: 1200px;
+            border: 1px solid #eee;
+            padding: 20px;
+        }
+        .div-read-post div {
+            margin-bottom: 20px;
+        }
+        .post-date div {
+            margin: 0;
+        }
+        .div-read-post::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .post-category a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .post-author a{
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .post-write-info::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+<!--    <link rel="stylesheet" href="/css/read-post.css" type="text/css">-->
+    <div class="container">
+        <th:block th:insert="fragment/header :: headerFragment"></th:block>
+        <div class="div-read-post">
+            <h2 class="post-title">제목</h2>
+            <hr>
+            <div class="post-category"><a href="#">카테고리</a></div>
+            <div class="post-write-info">
+                <div class="post-author fl"><a class="link-profile"></a></div>
+                <div class="post-date fr" style="text-align: right">
+                    <div class="post-createdDate">created: </div>
+                    <div class="post-modifiedDate">modified: </div>
+                </div>
+            </div>
+            <div class="read-post-content">
+                <h3>내용</h3>
+                <div class="post-content">content</div>
+            </div>
+            <div class="read-post-button">
+                <a href="#" class="a-btn-small btn-remove fr" onclick="removePost()">삭제</a>
+                <a href="#" class="a-btn-small btn-edit fr" onclick="showModal('update')">수정</a>
+            </div>
+        </div>
+        <th:block th:insert="fragment/footer :: footerFragment"></th:block>
+    </div>
+    <th:block th:replace="fragment/post-modal :: postModalFragment"></th:block>
+    <script src="/js/read-post.js"></script>
+    <script src="/js/post.js"></script>
+</body>
+</html>

@@ -213,6 +213,7 @@ public class PostControllerTest {
         PostDto dto = new PostDto();
         dto.setTitle(title);
         dto.setContent(content);
+        dto.setCategoryId(category.getId());
 
         String info = objectMapper.writeValueAsString(dto);
         Long id = postRepository.findAll().get(0).getId();
@@ -257,6 +258,7 @@ public class PostControllerTest {
         PostDto dto = new PostDto();
         dto.setTitle(title);
         dto.setContent(content);
+        dto.setCategoryId(category.getId());
 
         String info = objectMapper.writeValueAsString(dto);
         Long id = postRepository.findAll().get(0).getId();
@@ -301,6 +303,7 @@ public class PostControllerTest {
         PostDto dto = new PostDto();
         dto.setTitle(title);
         dto.setContent(content);
+        dto.setCategoryId(category.getId());
 
         String info = objectMapper.writeValueAsString(dto);
         Long id = postRepository.findAll().get(0).getId();
@@ -345,6 +348,7 @@ public class PostControllerTest {
         PostDto dto = new PostDto();
         dto.setTitle(title);
         dto.setContent(content);
+        dto.setCategoryId(category.getId());
 
         String info = objectMapper.writeValueAsString(dto);
         Long id = postRepository.findAll().get(0).getId();

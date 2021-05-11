@@ -1,9 +1,6 @@
 package com.jglee.cafe.service;
 
-import com.jglee.cafe.domain.CategoryRepository;
-import com.jglee.cafe.domain.Post;
-import com.jglee.cafe.domain.PostRepository;
-import com.jglee.cafe.domain.UserRepository;
+import com.jglee.cafe.domain.*;
 import com.jglee.cafe.dto.PostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -78,8 +75,10 @@ public class PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 포스트가 없습니다."));
 
-        post.update(dto);
+        Category category = categoryRepository.findById(dto.getCategoryId())
+                .orElseThrow(() -> new IllegalArgumentException("해당 카테고리가 없습니다."));
 
+        post.update(dto, category);
         return postRepository.save(post).getId();
     }
 

@@ -9,8 +9,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="/css/index.css" type="text/css">
     <link rel="stylesheet" href="/css/new-post.css" type="text/css">
-    <script src="/js/manage-category.js"></script>
     <script src="/js/new-post.js"></script>
+    <script src="/js/post.js"></script>
     <div class="container">
         <th:block th:insert="fragment/header :: headerFragment"></th:block>
         <div class="div-new-post">
@@ -28,7 +28,7 @@
                 <textarea name="content" class="textarea-content" rows="50" cols="180"></textarea>
             </div>
             <div class="new-post-button">
-                <a href="#" class="a-btn-small btn-cancel fr" onclick="btnCancel()">취소</a>
+                <a href="/" class="a-btn-small btn-cancel fr" onclick="btnCancel()">취소</a>
                 <a href="#" class="a-btn-small btn-create fr" onclick="savePost()">저장</a>
             </div>
         </div>

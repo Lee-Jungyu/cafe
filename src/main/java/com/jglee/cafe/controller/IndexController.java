@@ -86,18 +86,14 @@ public class IndexController {
 
     @GetMapping("/new-post")
     public String newPost(Model model) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        System.out.println("1 : " + authentication.getPrincipal());
-        if(authentication.getPrincipal().toString().equals("anonymousUser")) {
-            model.addAttribute("email", "null");
-        }
-        else {
-            UserDetails user = (UserDetails) authentication.getPrincipal();
-
-            String email = user.getUsername();
-            model.addAttribute("email", email);
-        }
         return "new-post";
+    }
+
+    @GetMapping("/read-post")
+    public String readPost(Model model, HttpServletRequest request) {
+        Long postId = Long.parseLong(request.getParameter("postId"));
+
+
+        return "read-post";
     }
 }

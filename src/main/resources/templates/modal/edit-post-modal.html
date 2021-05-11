@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="modal-content modal-edit-post" th:fragment="editPostModal">
+    <form autocomplete="off">
+        <div class="modal-content-title">
+            <h2>포스트 수정</h2>
+        </div>
+        <div class="modal-content-body">
+            <h3>카테고리 선택</h3>
+            <select name="category" class="select-category-name"></select>
+            <h3>제목</h3>
+            <input class="text-title" type="text" name="title" size="100">
+            <h3>내용</h3>
+            <textarea name="content" class="textarea-content" rows="30" cols="100"></textarea>
+        </div>
+        <div class="modal-content-btn">
+            <a href="#" class="a-btn-small btn-edit fl" onclick="editPost()">수정</a>
+            <a href="#" class="a-btn-small btn-cancel fl" onclick="btnClose()">취소</a>
+        </div>
+    </form>
+</div>
+</html>

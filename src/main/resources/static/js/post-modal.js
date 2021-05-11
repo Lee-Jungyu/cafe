@@ -16,4 +16,9 @@ function loadCategory() {
         alert(error);
     });
 }
+
+function btnClose() {
+    location.reload();
+}
+
 loadCategory();

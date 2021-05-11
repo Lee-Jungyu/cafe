@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="modal-background" th:fragment="postModalFragment">
+    <link rel="stylesheet" href="/css/modal.css" type="text/css">
+    <script src="/js/post-modal.js"></script>
+    <script src="/js/post.js"></script>
+
+    <th:block th:insert="modal/edit-post-modal :: editPostModal"></th:block>
+</div>
+</html>

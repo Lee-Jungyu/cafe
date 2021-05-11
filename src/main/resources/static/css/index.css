@@ -40,12 +40,12 @@ td {
 .middle-right {
     width: 80%;
 }
-.content {
+.board {
     width: 78%;
     height: 100%;
     margin: 0 10px;
 }
-.content table {
+.board table {
     width: 100%;
 }
 .footer {
@@ -58,6 +58,7 @@ td {
 }
 .link-profile {
     text-decoration: none;
+    font-weight: bold;
 }
 .a-btn-small {
     display: flex;
