@@ -57,31 +57,34 @@ intelliJ Community Edition IDE 기준
 > 
 
 **카테고리 추가**
-1. Category Name을 HttpMessage의 body에 넣어 '/category'에 post 요청
-2. 요청한 유저의 JWT토큰을 해독해 유저의 권한 정보를 파악
+1. CategoryName을 HttpMessage의 body에 넣어 '/category'에 post 요청
+2. 요청한 유저의 JWT 토큰을 해독해 유저의 권한 정보를 파악
 3. 유저의 권한이 "ADMIN"일 경우 카테고리 정보(이름)가 유효한지 파악 후 카테고리 정보를 JpaRepository(CategoryRepository)에 저장
 
 **카테고리 수정**
 1. Category Name을 HttpMessage의 body에 넣어 '/category/${id}'에 put 요청
-2. 요청한 유저의 JWT토큰을 해독해 유저의 권한 정보를 파악
+2. 요청한 유저의 JWT 토큰을 해독해 유저의 권한 정보를 파악
 3. 유저의 권한이 "ADMIN"일 경우 변경될 카테고리 정보(이름)가 유효한지 파악 후 변경될 카테고리 정보를 수정
 
 **카테고리 삭제**
 1. '/category/${id}'에 delete 요청
-2. 요청한 유저의 JWT토큰을 해독해 유저의 권한 정보를 파악
+2. 요청한 유저의 JWT 토큰을 해독해 유저의 권한 정보를 파악
 3. 유저의 권한이 "ADMIN"일 경우 카테고리 정보를 JpaRepository(CategoryRepository)에서 삭제
-4. (예정) 삭제될 카테고리의 게시물을 자유게시판으로 옮기는 작업을 할 예정
+4. (추가) 삭제될 카테고리의 게시물을 자유게시판으로 옮기는 작업을 할 예정
 
 **카테고리 조회**
 - 카테고리 별 조회
-  1. '/category/${id}'에 get요청
+  1. '/category/${id}'에 get 요청
   2. 해당 id의 카테고리가 존재할 경우 해당 카테고리의 정보를 반환
 - 카테고리 전체 조회
-  1. '/category'에 get요청
+  1. '/category'에 get 요청
   2. 카테고리 전체의 정보를 반환
 
-**TDD**
+**TDD (Test-driven Development)**
 > 여기에 적혀있는 장·단점은 저의 기준으로 적은 것임을 미리 알려드립니다.
+- 특징
+  - 테스트를 먼저 만들고 테스트를 통과하기 위한 코드를 작성
+  - 실패하는 테스트 케이스 작성 → 성공하는 테스트 케이스 작성 → 코드 리팩토링
 - 장점
   - **테스트 시간 감소**   
     TDD를 사용하지 않고 변경된 결과를 테스트하고 싶을 경우 서버를 재가동해야 합니다. 또한 기능들을 테스트하려면 postman 혹은 FE 화면에서 직접 개발자가 기능을 실행해야 합니다. 기능에 변경이 발생할 때마다 이러한 작업을 하게 된다면, 테스트에 들어가는 소모되는 시간 비용은 생각보다 큽니다. 하지만 미리 테스트 코드를 작성하고 구현 코드를 변경하게 된다면 테스트 코드를 실행하는 것만으로도 변경된 결과를 파악할 수 있습니다. 따라서 TDD를 사용하면 테스트에 들어가는 시간이 감소하게 됩니다.
@@ -97,3 +100,51 @@ intelliJ Community Edition IDE 기준
     **TDD 방법의 개발 시간 = 기존 개발 방법의 개발 시간 + 테스트 코드를 작성하는 시간**   
     이때 테스트 코드의 길이는 경험상 테스트를 할 코드의 길이만큼 길어지게 됩니다. 그래서 기존의 개발 시간보다 오래 걸리게 되고 이는 생산성의 저하를 불러오게 됩니다. 따라서 시간이 촉박하지만 TDD를 사용해야 할 때 테스트가 필요한 경우에 한해서 테스트 코드를 작성하는 것 또한 하나의 방법인 것 같습니다.
 
+***
+
+### 포스트 기능 추가 2021.05.12.
+**기능 목록**
+- 포스트 추가
+- 포스트 수정
+- 포스트 삭제
+- 포스트 조회
+  
+**포스트란?**
+> 포스트는 게시판의 게시글을 의미합니다.
+> 
+> 제목, 작성자, 내용으로 구성되어 있습니다.
+> 
+> 각 포스트는 하나의 카테고리 ID를 갖게 됩니다.
+
+**포스트 추가**
+1. title, categoryId, content를 HttpMessage의 body에 넣어 '/post'에 post 요청
+2. 포스트 생성에 필요한 정보가 있는지 확인 (포스트 제목)
+3. spring security의 context에서 인증정보를 받아온 후 작성자 확인
+4. dto에 작성자 정보를 넣고 JpaRepository(PostRepository)에 저장
+
+**포스트 수정**
+1. title, categoryId, content를 HttpMessage의 body에 넣어 '/post/${id}'에 put 요청
+2. 포스트 수정에 필요한 정보가 있는지 확인 (포스트 제목)
+3. spring security의 context에서 인증정보를 받아온 후 수정자 확인
+4. 수정자가 작성자 본인 혹은 관리자라면 포스트 정보를 변경
+
+**포스트 삭제**
+1. '/post/${id}'에 delete 요청
+2. spring security의 context에서 인증정보를 받아온 후 삭제자 확인
+3. 삭제자가 작성자 본인 혹은 관리자라면 포스트 정보를 JpaRepository(PostRepository)에서 삭제
+
+**포스트 조회**
+- postID 별 포스트 조회
+  1. '/post/${id}'에 get 요청
+  2. 해당 id의 포스트가 존재할 경우 해당 포스트의 정보를 반환
+- 포스트 전체 목록 조회
+  1. '/post'에 get 요청
+  2. 포스트 전체의 정보를 반환
+- 유저 별 포스트 목록 조회
+  1. '/post/user/${email}'에 get 요청
+  2. 해당 email의 유저 존재 여부 확인
+  3. PostRepository의 findAllByUser_Email 메소드를 통해 작성자 별 포스트 목록 반환
+- 카테고리 별 포스트 목록 조회
+  1. '/post/category/${id}'에 get 요청
+  2. 해당 id의 카테고리 존재 여부 확인
+  3. PostRepository의 findAllByCategory_Id 메소드를 통해 카테고리 별 포스트 목록 반환
