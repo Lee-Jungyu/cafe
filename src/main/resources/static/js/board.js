@@ -14,7 +14,10 @@ function loadPost() {
             var table_post = document.getElementsByClassName('table-post')[0];
             var tbody = table_post.getElementsByTagName('tbody')[0];
 
-            for(i = 0; i < jsonData.length; i++) {
+            var btnNewPost = document.getElementsByClassName('btn-new-post')[0];
+            btnNewPost.href += '?category=' + 1;
+
+            for(i = jsonData.length - 1; i >= 0; i--) {
                 var createdDate = jsonData[i].createdDate.split("T")[0];
                 var td = `
                     <td>${jsonData[i].id}</td>
@@ -40,7 +43,11 @@ function loadPost() {
             var table_post = document.getElementsByClassName('table-post')[0];
             var tbody = table_post.getElementsByTagName('tbody')[0];
 
-            for(i = 0; i < jsonData.length; i++) {
+            var btnNewPost = document.getElementsByClassName('btn-new-post')[0];
+            btnNewPost.href += '?category=' + category;
+
+
+            for(i = jsonData - 1; i >= 0; i--) {
                 var createdDate = jsonData[i].createdDate.split("T")[0];
                 var td = `
                     <td>${jsonData[i].id}</td>

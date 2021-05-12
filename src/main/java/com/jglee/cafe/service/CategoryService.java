@@ -2,7 +2,10 @@ package com.jglee.cafe.service;
 
 import com.jglee.cafe.domain.Category;
 import com.jglee.cafe.domain.CategoryRepository;
+import com.jglee.cafe.domain.Post;
+import com.jglee.cafe.domain.PostRepository;
 import com.jglee.cafe.dto.CategoryDto;
+import com.jglee.cafe.dto.PostDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 public class CategoryService{
 
     private final CategoryRepository categoryRepository;
+    private final PostRepository postRepository;
 
     @Transactional
     public Long save(CategoryDto dto) {
@@ -54,6 +58,7 @@ public class CategoryService{
     public Long update(Long id, CategoryDto dto) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 카테고리가 없습니다."));
+
         category.update(dto);
 
         return categoryRepository.save(category).getId();
@@ -63,6 +68,13 @@ public class CategoryService{
     public Long delete(Long id) {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 카테고리가 없습니다."));
+
+        // 카테고리 삭제 시 카테고리에 있는 게시물들을 자유게시판으로 옮김
+        List<Post> postsInCategory = postRepository.findAllByCategory_Id(id);
+        Category freeboard = categoryRepository.findById(1L).orElse(null);
+        for(Post post : postsInCategory) {
+            post.update(new PostDto(post), freeboard);
+        }
 
         categoryRepository.delete(category);
         return id;
