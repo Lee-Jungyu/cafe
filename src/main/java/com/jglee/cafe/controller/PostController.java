@@ -23,7 +23,7 @@ public class PostController {
 
     @PostMapping("/post")
     @ResponseBody
-    public ResponseEntity createCategory(@RequestBody PostDto dto) {
+    public ResponseEntity createPost(@RequestBody PostDto dto) {
         if(dto.getTitle().length() == 0)
             return new ResponseEntity("You must enter title", HttpStatus.BAD_REQUEST);
 
@@ -61,7 +61,7 @@ public class PostController {
     }
 
     @PutMapping("/post/{id}")
-    public ResponseEntity updateCategory(@PathVariable Long id, @RequestBody PostDto dto) {
+    public ResponseEntity updatePost(@PathVariable Long id, @RequestBody PostDto dto) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails user = (UserDetails) authentication.getPrincipal();
@@ -86,7 +86,7 @@ public class PostController {
     }
 
     @DeleteMapping("/post/{id}")
-    public ResponseEntity deleteCategory(@PathVariable Long id) {
+    public ResponseEntity deletePost(@PathVariable Long id) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails user = (UserDetails) authentication.getPrincipal();
