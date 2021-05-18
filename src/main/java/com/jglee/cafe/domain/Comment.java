@@ -1,5 +1,6 @@
 package com.jglee.cafe.domain;
 
+import com.jglee.cafe.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,5 +34,9 @@ public class Comment extends BaseTimeEntity {
         this.content = content;
         this.author = author;
         this.post = post;
+    }
+
+    public void update(CommentDto dto) {
+        this.content = dto.getContent();
     }
 }

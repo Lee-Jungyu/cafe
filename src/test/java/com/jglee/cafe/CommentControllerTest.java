@@ -54,6 +54,7 @@ public class CommentControllerTest {
 
     @Before
     public void reset() {
+        commentRepository.deleteAll();
         postRepository.deleteAll();
         userRepository.deleteAll();
         categoryRepository.deleteAll();
@@ -217,9 +218,10 @@ public class CommentControllerTest {
         dto.setPostId(post.getId());
 
         String info = objectMapper.writeValueAsString(dto);
+        Long id = commentRepository.findAll().get(0).getId();
 
         //when
-        final ResultActions actions = mockMvc.perform(put("/comment")
+        final ResultActions actions = mockMvc.perform(put("/comment/" + id)
                 .content(info)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -258,9 +260,10 @@ public class CommentControllerTest {
         dto.setPostId(post.getId());
 
         String info = objectMapper.writeValueAsString(dto);
+        Long id = commentRepository.findAll().get(0).getId();
 
         //when
-        final ResultActions actions = mockMvc.perform(put("/comment")
+        final ResultActions actions = mockMvc.perform(put("/comment/" + id)
                 .content(info)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -297,9 +300,10 @@ public class CommentControllerTest {
         dto.setPostId(post.getId());
 
         String info = objectMapper.writeValueAsString(dto);
+        Long id = commentRepository.findAll().get(0).getId();
 
         //when
-        final ResultActions actions = mockMvc.perform(put("/comment")
+        final ResultActions actions = mockMvc.perform(put("/comment/" + id)
                 .content(info)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
@@ -326,8 +330,10 @@ public class CommentControllerTest {
                 .post(post)
                 .build());
 
+        Long id = commentRepository.findAll().get(0).getId();
+
         //when
-        final ResultActions actions = mockMvc.perform(delete("/comment")
+        final ResultActions actions = mockMvc.perform(delete("/comment/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print());
@@ -353,8 +359,10 @@ public class CommentControllerTest {
                 .post(post)
                 .build());
 
+        Long id = commentRepository.findAll().get(0).getId();
+
         //when
-        final ResultActions actions = mockMvc.perform(delete("/comment")
+        final ResultActions actions = mockMvc.perform(delete("/comment/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print());
@@ -380,8 +388,10 @@ public class CommentControllerTest {
                 .post(post)
                 .build());
 
+        Long id = commentRepository.findAll().get(0).getId();
+
         //when
-        final ResultActions actions = mockMvc.perform(delete("/comment")
+        final ResultActions actions = mockMvc.perform(delete("/comment/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print());

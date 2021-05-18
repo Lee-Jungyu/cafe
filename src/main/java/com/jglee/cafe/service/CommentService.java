@@ -2,6 +2,8 @@ package com.jglee.cafe.service;
 
 import com.jglee.cafe.domain.Comment;
 import com.jglee.cafe.domain.CommentRepository;
+import com.jglee.cafe.domain.PostRepository;
+import com.jglee.cafe.domain.UserRepository;
 import com.jglee.cafe.dto.CommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,9 @@ import java.util.stream.Collectors;
 @Service
 public class CommentService {
 
-    private CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final PostRepository postRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public CommentDto findById(Long id) {
@@ -30,5 +34,32 @@ public class CommentService {
                 .stream()
                 .map(CommentDto::new)
                 .collect(Collectors.toList());
+    }
+
+    public Long save(CommentDto dto) {
+        return commentRepository.save(Comment.builder()
+                .author(userRepository.findByEmail(dto.getAuthor())
+                        .orElseThrow(() -> new IllegalArgumentException("해당 유저가 없습니다.")))
+                .post(postRepository.findById(dto.getPostId())
+                        .orElseThrow(() -> new IllegalArgumentException("해당 포스트가 없습니다.")))
+                .content(dto.getContent()).build()).getId();
+    }
+
+    public Long update(Long id, CommentDto dto) {
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 코멘트가 없습니다."));
+
+        comment.update(dto);
+
+        return commentRepository.save(comment).getId();
+    }
+
+    public Long delete(Long id) {
+        Comment comment = commentRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 코멘트가 없습니다."));
+
+        commentRepository.delete(comment);
+
+        return id;
     }
 }
