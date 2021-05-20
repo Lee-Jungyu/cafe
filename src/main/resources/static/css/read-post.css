@@ -1,10 +1,31 @@
 .div-read-post {
     margin: 0 auto;
-    width: fit-content;
+    width: 1200px;
     border: 1px solid #eee;
     padding: 20px;
 }
 .div-read-post::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.div-read-post div {
+    margin-bottom: 20px;
+}
+.post-date div {
+    margin: 0;
+}
+.post-category a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.post-author a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.post-write-info::after {
     content: '';
     display: block;
     clear: both;
