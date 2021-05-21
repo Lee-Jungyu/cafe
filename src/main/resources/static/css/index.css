@@ -10,6 +10,9 @@ th {
 td {
     padding: 5px;
 }
+textarea {
+    resize: none;
+}
 .fl {
     float: left;
 }

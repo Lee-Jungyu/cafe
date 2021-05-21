@@ -30,3 +30,18 @@
     display: block;
     clear: both;
 }
+.div-post-comment {
+    margin: 0 auto;
+    width: 1230px;
+    padding: 20px;
+}
+.div-post-comment::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.textarea-comment {
+    margin: 0px;
+    width: 1150px;
+    height: 45px;
+}

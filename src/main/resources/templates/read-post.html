@@ -4,11 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>new post</title>
+    <style>
+        .div-new-comment::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .ul-comment-list {
+            padding: 0;
+        }
+        .comment-item {
+            list-style: none;
+            padding-top: 20px;
+        }
+        .comment-item::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .comment-item-left {
+            padding-right: 50px;
+        }
+    </style>
 </head>
 <body>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="/css/index.css" type="text/css">
-<!--    <link rel="stylesheet" href="/css/read-post.css" type="text/css">-->
+    <link rel="stylesheet" href="/css/read-post.css" type="text/css">
     <div class="container">
         <th:block th:insert="fragment/header :: headerFragment"></th:block>
         <div class="div-read-post">
@@ -29,6 +51,53 @@
             <div class="read-post-button">
                 <a href="#" class="a-btn-small btn-remove fr" onclick="removePost()">삭제</a>
                 <a href="#" class="a-btn-small btn-edit fr" onclick="showModal('update')">수정</a>
+            </div>
+        </div>
+        <div class="div-post-comment">
+            <h3>댓글</h3>
+            <div class="div-new-comment">
+                <textarea name="comment" class="textarea-comment fl"></textarea>
+                <a href="#" class="a-btn-small btn-create fl">등록</a>
+            </div>
+            <div class="div-comment-list">
+                <ul class="ul-comment-list">
+                    <li class="comment-item">
+                        <div class="comment-item-left fl">
+                            <div class="div-comment-author">
+                                <a href="#" class="comment-author">ㅇㅇㅇ</a>
+                            </div>
+                            <div class="div-modified-date">
+                                <p>1111.11.11</p>
+                            </div>
+                        </div>
+
+                        <div class="div-comment-content fl">
+                            aaaaaaaaaaaa
+                        </div>
+                        <div class="div-comment-action fr">
+                            <a href="#">수정</a>
+                            <a href="#">삭제</a>
+                        </div>
+                    </li>
+                    <li class="comment-item">
+                        <div class="comment-item-left fl">
+                            <div class="div-comment-author">
+                                <a href="#" class="comment-author">ㅇㅇㅇ</a>
+                            </div>
+                            <div class="div-modified-date">
+                                <p>1111.11.11</p>
+                            </div>
+                        </div>
+
+                        <div class="div-comment-content fl">
+                            aaaaaaaaaaaa
+                        </div>
+                        <div class="div-comment-action fr">
+                            <a href="#">수정</a>
+                            <a href="#">삭제</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <th:block th:insert="fragment/footer :: footerFragment"></th:block>
