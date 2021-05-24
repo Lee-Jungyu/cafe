@@ -1,10 +1,8 @@
 package com.jglee.cafe.controller;
 
 import com.jglee.cafe.config.JwtTokenProvider;
-import com.jglee.cafe.domain.Category;
-import com.jglee.cafe.domain.CategoryRepository;
-import com.jglee.cafe.domain.User;
-import com.jglee.cafe.domain.UserRepository;
+import com.jglee.cafe.domain.*;
+import com.jglee.cafe.dto.CommentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Controller
@@ -23,6 +23,7 @@ public class IndexController {
     private final JwtTokenProvider jwtTokenProvider;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
+    private final CommentRepository commentRepository;
 
     @GetMapping("/")
     public String index(Model model, HttpServletRequest request) {
@@ -93,6 +94,12 @@ public class IndexController {
     public String readPost(Model model, HttpServletRequest request) {
         Long postId = Long.parseLong(request.getParameter("postId"));
 
+        List<CommentDto> comments = commentRepository.findAllByPost_Id(postId)
+                .stream()
+                .map(CommentDto::new)
+                .collect(Collectors.toList());
+
+        model.addAttribute("comments", comments);
 
         return "read-post";
     }

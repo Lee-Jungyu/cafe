@@ -57,46 +57,11 @@
             <h3>댓글</h3>
             <div class="div-new-comment">
                 <textarea name="comment" class="textarea-comment fl"></textarea>
-                <a href="#" class="a-btn-small btn-create fl">등록</a>
+                <a href="#" class="a-btn-small btn-create fl" onclick="addComment()">등록</a>
             </div>
             <div class="div-comment-list">
-                <ul class="ul-comment-list">
-                    <li class="comment-item">
-                        <div class="comment-item-left fl">
-                            <div class="div-comment-author">
-                                <a href="#" class="comment-author">ㅇㅇㅇ</a>
-                            </div>
-                            <div class="div-modified-date">
-                                <p>1111.11.11</p>
-                            </div>
-                        </div>
-
-                        <div class="div-comment-content fl">
-                            aaaaaaaaaaaa
-                        </div>
-                        <div class="div-comment-action fr">
-                            <a href="#">수정</a>
-                            <a href="#">삭제</a>
-                        </div>
-                    </li>
-                    <li class="comment-item">
-                        <div class="comment-item-left fl">
-                            <div class="div-comment-author">
-                                <a href="#" class="comment-author">ㅇㅇㅇ</a>
-                            </div>
-                            <div class="div-modified-date">
-                                <p>1111.11.11</p>
-                            </div>
-                        </div>
-
-                        <div class="div-comment-content fl">
-                            aaaaaaaaaaaa
-                        </div>
-                        <div class="div-comment-action fr">
-                            <a href="#">수정</a>
-                            <a href="#">삭제</a>
-                        </div>
-                    </li>
+                <ul class="ul-comment-list" th:each="comment : ${comments}">
+                    <th:block th:insert="component/comment-item :: commentComponent(${comment})"></th:block>
                 </ul>
             </div>
         </div>
@@ -105,5 +70,6 @@
     <th:block th:replace="fragment/post-modal :: postModalFragment"></th:block>
     <script src="/js/read-post.js"></script>
     <script src="/js/post.js"></script>
+    <script src="/js/comment.js"></script>
 </body>
 </html>

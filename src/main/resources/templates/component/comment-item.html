@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<li class="comment-item" th:fragment="commentComponent(${comment})">
+    <input type="hidden" class="comment-id" th:value="${comment.id}">
+    <div class="comment-item-left fl">
+        <div class="div-comment-author">
+            <a href="#" class="comment-author" th:text="${comment.author}"></a>
+        </div>
+        <div class="div-comment-modifiedDate" th:text="${comment.modifiedDate}"></div>
+    </div>
+    <div class="div-comment-content fl" th:text="${comment.content}"></div>
+    <div class="div-comment-action fr">
+        <a href="#">수정</a>
+        <a href="#">삭제</a>
+    </div>
+</li>
+</html>

@@ -48,6 +48,22 @@ function loadPost() {
         alert(error.responseText);
     });
 }
+function loadComment() {
+    var comment_item = document.getElementsByClassName('comment-item');
+
+    for(var i = 0; i < comment_item.length; i++) {
+        var item = comment_item[i];
+
+        var comment_author = item.getElementsByClassName('comment-author')[0];
+        comment_author.href = "/profile?email=" + comment_author.innerHTML;
+
+        var comment_modifiedDate = item.getElementsByClassName('div-comment-modifiedDate')[0];
+        comment_modifiedDate.innerHTML = comment_modifiedDate.innerHTML.split("T")[0];
+
+        var comment_content = item.getElementsByClassName('div-comment-content')[0];
+        comment_content.innerHTML = comment_content.innerHTML.replace(/\n/g,'<br>');
+    }
+}
 
 function showModal(option) {
     switch (option) {
@@ -69,3 +85,4 @@ function showModal(option) {
 }
 
 loadPost();
+loadComment();
