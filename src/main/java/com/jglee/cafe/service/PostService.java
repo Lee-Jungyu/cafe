@@ -16,6 +16,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public Long save(PostDto dto) {
@@ -87,6 +88,7 @@ public class PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 포스트가 없습니다."));
 
+        commentRepository.deleteAllByPost_Id(id);
         postRepository.delete(post);
 
         return id;

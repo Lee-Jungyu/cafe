@@ -62,7 +62,7 @@ function removePost() {
             contentType: "application/json"
         }).done(function() {
             alert('포스트가 삭제되었습니다.');
-            location.reload();
+            window.location.href = '/';
         }).fail(function(error) {
             alert(error.responseText);
         });
