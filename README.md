@@ -139,7 +139,7 @@ intelliJ Community Edition IDE 기준
 > 
 > 제목, 작성자, 내용으로 구성되어 있습니다.
 > 
-> 각 포스트는 하나의 카테고리 ID를 갖게 됩니다.
+> 각 포스트는 카테고리 ID와 작성자 ID를 한개 씩 갖게 됩니다.
 
 **포스트 추가**
 1. title, categoryId, content를 HttpMessage의 body에 넣어 '/post'에 post 요청
@@ -208,3 +208,45 @@ intelliJ Community Edition IDE 기준
     JPA를 잘 사용하기 위해서 알아야 하는게 너무 많습니다.
     단방향, 양방향, 임베디드 관계, 매핑 전략, 쿼리방법 등 다양하게 많은 것을 알아야 합니다.
     이러한 것들을 무시하고 편하게 코딩하면 **성능 상의 문제** 혹은 **데이터 불일치 문제**가 발생할 수 있습니다.
+    
+***
+
+### 코멘트 기능 추가 2021.05.12.
+**기능 목록**
+- 코멘트 추가
+- 코멘트 수정
+- 코멘트 삭제
+- 코멘트 조회
+
+**코멘트란?**
+> 코멘트는 게시글의 댓글을 의미합니다.
+>
+> 작성자, 내용으로 구성되어 있습니다.
+>
+> 각 코멘트는 Post ID와 작성자 ID를 1개 씩 갖게 됩니다.
+
+**코멘트 추가**
+1. postId, content를 HttpMessage의 body에 넣어 '/comment'에 post 요청
+2. 코멘트 생성에 필요한 정보가 있는지 확인 (코멘트 내용)
+3. spring security의 context에서 인증정보를 받아온 후 작성자 확인
+4. dto에 작성자 정보를 넣고 JpaRepository(CommentRepository)에 저장
+
+**코멘트 수정**
+1. postId, content를 HttpMessage의 body에 넣어 '/comment/${id}'에 put 요청
+2. 코멘트 수정에 필요한 정보가 있는지 확인 (코멘트 내용)
+3. spring security의 context에서 인증정보를 받아온 후 수정자 확인
+4. 수정자가 작성자 본인이라면 코멘트 정보를 변경
+> UI적인 부분은 구현하지 않았으나 기능적인 부분은 개발함  
+
+**코멘트 삭제**
+1. '/comment/${id}'에 delete 요청
+2. spring security의 context에서 인증정보를 받아온 후 삭제자 확인
+3. 삭제자가 작성자 본인 혹은 관리자라면 코멘트 정보를 JpaRepository(CommentRepository)에서 삭제
+
+**코멘트 조회**
+- commentID 별 코멘트 조회
+  1. '/comment/${id}'에 get 요청
+  2. 해당 id의 코멘트가 존재할 경우 해당 코멘트의 정보를 반환
+- 코멘트 전체 목록 조회
+  1. '/comment'에 get 요청
+  2. 코멘트 전체의 정보를 반환
