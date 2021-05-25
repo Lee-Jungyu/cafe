@@ -25,6 +25,19 @@ function editComment() {
 
 }
 
-function removeComment() {
-
+function removeComment(c_id) {
+    if(confirm('정말로 코멘트를 삭제하시겠습니까?')) {
+        $.ajax({
+            type: "DELETE",
+            url: "/comment/" + c_id,
+            dataType: "text",
+            contentType: "application/json",
+        }).done(function() {
+            window.location.reload();
+        }).fail(function(error) {
+            alert(error.responseText);
+        });
+    }
+    else {
+    }
 }
