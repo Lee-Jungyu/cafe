@@ -1,8 +1,15 @@
 package com.jglee.cafe;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jglee.cafe.domain.*;
-import com.jglee.cafe.dto.CommentDto;
+import com.jglee.cafe.category.domain.Category;
+import com.jglee.cafe.category.domain.CategoryRepository;
+import com.jglee.cafe.comment.domain.Comment;
+import com.jglee.cafe.comment.domain.CommentRepository;
+import com.jglee.cafe.comment.dto.CommentDto;
+import com.jglee.cafe.post.domain.Post;
+import com.jglee.cafe.post.domain.PostRepository;
+import com.jglee.cafe.user.domain.User;
+import com.jglee.cafe.user.domain.UserRepository;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

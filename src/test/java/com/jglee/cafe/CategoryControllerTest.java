@@ -1,9 +1,9 @@
 package com.jglee.cafe;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jglee.cafe.domain.Category;
-import com.jglee.cafe.domain.CategoryRepository;
-import com.jglee.cafe.dto.CategoryDto;
+import com.jglee.cafe.category.domain.Category;
+import com.jglee.cafe.category.domain.CategoryRepository;
+import com.jglee.cafe.category.dto.CategoryDto;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.FixMethodOrder;

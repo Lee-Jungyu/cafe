@@ -1,9 +1,9 @@
 package com.jglee.cafe;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jglee.cafe.domain.UserRepository;
-import com.jglee.cafe.dto.UserLoginDto;
-import com.jglee.cafe.dto.UserSignupDto;
+import com.jglee.cafe.user.domain.UserRepository;
+import com.jglee.cafe.user.dto.UserLoginDto;
+import com.jglee.cafe.user.dto.UserSignupDto;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
