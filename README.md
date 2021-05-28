@@ -16,23 +16,6 @@ intelliJ Community Edition IDE 기준
 
 ***
 
-### 유저 기능 추가 2021.04.27.
-**기능 목록**
-- 회원가입
-- 로그인
-
-**회원가입**
-1. Email, Password, roles를 HttpMessage의 body에 넣어 '/signup'에 post 요청
-2. Password를 Bcript 해시 함수로 인코딩
-3. roles를 ','를 기준으로 split하여 List에 저장
-4. 회원 정보를 JpaRepository(UserRepository)에 저장
-
-**로그인**
-1. Email, Password를 HttpMessage의 body에 넣어 '/login'에 post 요청
-2. Password를 Bcript 해시 함수로 디코딩 후 입력받은 회원 정보와 일치하는 회원 검색
-3. 회원 정보 JWT Token 생성
-4. JWT Token을 가진 쿠키를 response에 추가한 후 응답
-
 **Why I use JWT?**
 - JWT와 비교되는 인증 방식으로는 세션-쿠키 방식이 있습니다.
 - 세션-쿠키 방식은 쿠키에 저장된 session id 값을 통해 서버에서 user의 정보를 알 수 있는 방식입니다.
@@ -42,43 +25,6 @@ intelliJ Community Edition IDE 기준
 - 이에 대한 해결책으로 Access/Refresh Token을 사용하는 방법이 있습니다.
 
 ***
-
-### 카테고리 기능 추가 2021.05.04.
-**기능 목록**
-- 카테고리 추가
-- 카테고리 수정
-- 카테고리 삭제
-- 카테고리 조회
-
-**카테고리란?**
-> 카테고리는 게시물의 종류를 분류하는 게시판을 의미합니다.
-> 
-> 기본적으로 자유게시판 카테고리가 존재하고 자유게시판은 수정 혹은 삭제할 수 없습니다.
-> 
-
-**카테고리 추가**
-1. CategoryName을 HttpMessage의 body에 넣어 '/category'에 post 요청
-2. 요청한 유저의 JWT 토큰을 해독해 유저의 권한 정보를 파악
-3. 유저의 권한이 "ADMIN"일 경우 카테고리 정보(이름)가 유효한지 파악 후 카테고리 정보를 JpaRepository(CategoryRepository)에 저장
-
-**카테고리 수정**
-1. Category Name을 HttpMessage의 body에 넣어 '/category/${id}'에 put 요청
-2. 요청한 유저의 JWT 토큰을 해독해 유저의 권한 정보를 파악
-3. 유저의 권한이 "ADMIN"일 경우 변경될 카테고리 정보(이름)가 유효한지 파악 후 변경될 카테고리 정보를 수정
-
-**카테고리 삭제**
-1. '/category/${id}'에 delete 요청
-2. 요청한 유저의 JWT 토큰을 해독해 유저의 권한 정보를 파악
-3. 유저의 권한이 "ADMIN"일 경우 카테고리 정보를 JpaRepository(CategoryRepository)에서 삭제
-4. (추가) 삭제될 카테고리의 게시물을 자유게시판으로 옮기는 작업을 할 예정
-
-**카테고리 조회**
-- 카테고리 별 조회
-  1. '/category/${id}'에 get 요청
-  2. 해당 id의 카테고리가 존재할 경우 해당 카테고리의 정보를 반환
-- 카테고리 전체 조회
-  1. '/category'에 get 요청
-  2. 카테고리 전체의 정보를 반환
 
 **TDD (Test-driven Development)**
 > 여기에 적혀있는 장·단점은 저의 기준으로 적은 것임을 미리 알려드립니다.
@@ -127,53 +73,6 @@ intelliJ Community Edition IDE 기준
 
 ***
 
-### 포스트 기능 추가 2021.05.12.
-**기능 목록**
-- 포스트 추가
-- 포스트 수정
-- 포스트 삭제
-- 포스트 조회
-  
-**포스트란?**
-> 포스트는 게시판의 게시글을 의미합니다.
-> 
-> 제목, 작성자, 내용으로 구성되어 있습니다.
-> 
-> 각 포스트는 카테고리 ID와 작성자 ID를 한개 씩 갖게 됩니다.
-
-**포스트 추가**
-1. title, categoryId, content를 HttpMessage의 body에 넣어 '/post'에 post 요청
-2. 포스트 생성에 필요한 정보가 있는지 확인 (포스트 제목)
-3. spring security의 context에서 인증정보를 받아온 후 작성자 확인
-4. dto에 작성자 정보를 넣고 JpaRepository(PostRepository)에 저장
-
-**포스트 수정**
-1. title, categoryId, content를 HttpMessage의 body에 넣어 '/post/${id}'에 put 요청
-2. 포스트 수정에 필요한 정보가 있는지 확인 (포스트 제목)
-3. spring security의 context에서 인증정보를 받아온 후 수정자 확인
-4. 수정자가 작성자 본인 혹은 관리자라면 포스트 정보를 변경
-
-**포스트 삭제**
-1. '/post/${id}'에 delete 요청
-2. spring security의 context에서 인증정보를 받아온 후 삭제자 확인
-3. 삭제자가 작성자 본인 혹은 관리자라면 포스트 정보를 JpaRepository(PostRepository)에서 삭제
-
-**포스트 조회**
-- postID 별 포스트 조회
-  1. '/post/${id}'에 get 요청
-  2. 해당 id의 포스트가 존재할 경우 해당 포스트의 정보를 반환
-- 포스트 전체 목록 조회
-  1. '/post'에 get 요청
-  2. 포스트 전체의 정보를 반환
-- 유저 별 포스트 목록 조회
-  1. '/post/user/${email}'에 get 요청
-  2. 해당 email의 유저 존재 여부 확인
-  3. PostRepository의 findAllByUser_Email 메소드를 통해 작성자 별 포스트 목록 반환
-- 카테고리 별 포스트 목록 조회
-  1. '/post/category/${id}'에 get 요청
-  2. 해당 id의 카테고리 존재 여부 확인
-  3. PostRepository의 findAllByCategory_Id 메소드를 통해 카테고리 별 포스트 목록 반환
-  
 **JPA (Java Persistence API)**
 - **JPA란?**   
   - 자바 ORM 기술에 대한 표준 명세 (자바에서 제공하는 API)
@@ -211,42 +110,8 @@ intelliJ Community Edition IDE 기준
     
 ***
 
-### 코멘트 기능 추가 2021.05.12.
-**기능 목록**
-- 코멘트 추가
-- 코멘트 수정
-- 코멘트 삭제
-- 코멘트 조회
-
-**코멘트란?**
-> 코멘트는 게시글의 댓글을 의미합니다.
->
-> 작성자, 내용으로 구성되어 있습니다.
->
-> 각 코멘트는 Post ID와 작성자 ID를 1개 씩 갖게 됩니다.
-
-**코멘트 추가**
-1. postId, content를 HttpMessage의 body에 넣어 '/comment'에 post 요청
-2. 코멘트 생성에 필요한 정보가 있는지 확인 (코멘트 내용)
-3. spring security의 context에서 인증정보를 받아온 후 작성자 확인
-4. dto에 작성자 정보를 넣고 JpaRepository(CommentRepository)에 저장
-
-**코멘트 수정**
-1. postId, content를 HttpMessage의 body에 넣어 '/comment/${id}'에 put 요청
-2. 코멘트 수정에 필요한 정보가 있는지 확인 (코멘트 내용)
-3. spring security의 context에서 인증정보를 받아온 후 수정자 확인
-4. 수정자가 작성자 본인이라면 코멘트 정보를 변경
-> UI적인 부분은 구현하지 않았으나 기능적인 부분은 개발함  
-
-**코멘트 삭제**
-1. '/comment/${id}'에 delete 요청
-2. spring security의 context에서 인증정보를 받아온 후 삭제자 확인
-3. 삭제자가 작성자 본인 혹은 관리자라면 코멘트 정보를 JpaRepository(CommentRepository)에서 삭제
-
-**코멘트 조회**
-- commentID 별 코멘트 조회
-  1. '/comment/${id}'에 get 요청
-  2. 해당 id의 코멘트가 존재할 경우 해당 코멘트의 정보를 반환
-- 코멘트 전체 목록 조회
-  1. '/comment'에 get 요청
-  2. 코멘트 전체의 정보를 반환
+## log
+- [유저 추가](https://github.com/Lee-Jungyu/cafe/tree/master/src/main/java/com/jglee/cafe/user)
+- [카테고리 추가](https://github.com/Lee-Jungyu/cafe/tree/master/src/main/java/com/jglee/cafe/category)
+- [포스트 추가](https://github.com/Lee-Jungyu/cafe/tree/master/src/main/java/com/jglee/cafe/post)
+- [코멘트 추가](https://github.com/Lee-Jungyu/cafe/tree/master/src/main/java/com/jglee/cafe/comment)
