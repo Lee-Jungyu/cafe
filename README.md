@@ -15,7 +15,7 @@ intelliJ Community Edition IDE 기준
 - localhost:포트번호로 접속 (port 번호 변경 안했다면 3000번 -> localhost:3000)
 
 ## 프로젝트 UI
-- [바로가기](https://github.com/Lee-Jungyu/cafe/image)
+- [바로가기](https://github.com/Lee-Jungyu/cafe/tree/master/image)
 ***
 
 **Why I use JWT?**
