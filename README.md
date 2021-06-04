@@ -14,6 +14,8 @@ intelliJ Community Edition IDE 기준
 - src/main/java/com/jglee/cafe/Application.java에서 재생 버튼(녹색 삼각형 모양) 눌러서 서버 실행
 - localhost:포트번호로 접속 (port 번호 변경 안했다면 3000번 -> localhost:3000)
 
+## 프로젝트 UI
+- [바로가기](https://github.com/Lee-Jungyu/cafe/image)
 ***
 
 **Why I use JWT?**
